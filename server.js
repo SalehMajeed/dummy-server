@@ -1,7 +1,12 @@
 const express = require('express');
-const userRoute = require('./userRoute');
+const userRoutes = require('./routes/userRoutes');
+const jodhpurRoutes = require('./routes/jodhpurRoutes');
 const app = express();
+const port = 8080;
 
-app.use('/user', userRoute);
+app.use('/user', userRoutes);
+app.use('/jodhpur', jodhpurRoutes);
 
-app.listen(8080);
+app.listen(port, () => {
+    console.log(`localhost:${port}`);
+});
