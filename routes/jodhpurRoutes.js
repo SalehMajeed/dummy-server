@@ -1,27 +1,16 @@
-const express = require('express');
-const jodhpurRoutes = express.Router();
+import { Router } from "express";
+import controllers from "../controllers/index.js";
 
-const address = {
-  'janta sweet home': 'Siwanchi gate',
-  chai: 'bakra mandi any shope',
-  chicken: 'delhi wala',
-  'horror-place': 'mandore nagadari',
-};
+const jodhpurRoutes = Router();
 
-jodhpurRoutes.get('/get-speciality/:speciality', (req, res) => {
-  try{
-    const currentNeed = req.params.speciality;
-    console.log(currentNeed);
-    res.send(address[currentNeed]);
-  } catch(err) {
-    console.log(err);
-    res.send(500);
-  }
-});
+jodhpurRoutes.get(
+  "/get-speciality/:speciality",
+  controllers.jodhpurControllers.jodhpurController
+);
 
-jodhpurRoutes.post('/update-details', (req, res) => {
-  console.log(req.query);
-  res.send('ok');
-});
+jodhpurRoutes.post(
+  "/update-details",
+  controllers.userControllers.userController
+);
 
-module.exports = jodhpurRoutes;
+export default jodhpurRoutes;
